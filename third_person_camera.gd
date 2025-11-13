@@ -13,10 +13,18 @@ var spring_arm_length: float = 1.0
 var mouse_sensitivity: float = 1.0
 
 @export_range(-360, 360, 10, "degrees")
-var min_boundary: float = 1.0
+var min_boundary: float:
+	get:
+		return rad_to_deg(_min_boundary)
+	set(value):
+		_min_boundary = deg_to_rad(value)
 
 @export_range(-360, 360, 10, "degrees")
-var max_boundary: float = 1.0
+var max_boundary: float:
+	get:
+		return rad_to_deg(_max_boundary)
+	set(value):
+		_max_boundary = deg_to_rad(value)
 
 @onready 
 var horizontal_pivot: Node3D = $HorizontalPivot
@@ -29,14 +37,16 @@ var spring_arm: SpringArm3D = $SpringArm3D
 
 var actor_direction: Vector3:
 	get:
-		if not actor_direction:
-			actor_direction = actor.direction
-		return actor_direction
+		if not _actor_direction:
+			_actor_direction = actor.direction
+		return _actor_direction
 	set(value):
-		actor_direction = value
+		_actor_direction = value
 		actor.direction = value
-
-var camera_direction: Vector2 = Vector2.ZERO
+var camera_direction: Vector2 = Vector2.ZERO		
+var _actor_direction: Vector3
+var _min_boundary: float
+var _max_boundary: float
 
 
 func _ready() -> void:

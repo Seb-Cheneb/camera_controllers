@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://btrarhl8tyifp"]
+
+[ext_resource type="Script" uid="uid://dsv4iy87iagf6" path="res://camera_controllers/third_person_camera.gd" id="1_2vm36"]
+
+[node name="HorizontalPivot" type="Node3D"]
+script = ExtResource("1_2vm36")
+metadata/_custom_type_script = "uid://dsv4iy87iagf6"
+
+[node name="VerticalPivot" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="VerticalPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="VerticalPivot/SpringArm3D"]
+current = true

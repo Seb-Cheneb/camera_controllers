@@ -1,14 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://btrarhl8tyifp"]
+[gd_scene load_steps=3 format=3 uid="uid://btrarhl8tyifp"]
 
 [ext_resource type="Script" uid="uid://dsv4iy87iagf6" path="res://camera_controllers/third_person_camera.gd" id="1_2vm36"]
 
-[node name="HorizontalPivot" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vm36"]
+
+[node name="YawPivot" type="Node3D"]
 script = ExtResource("1_2vm36")
 metadata/_custom_type_script = "uid://dsv4iy87iagf6"
 
-[node name="VerticalPivot" type="Node3D" parent="."]
+[node name="PitchPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
 
-[node name="SpringArm3D" type="SpringArm3D" parent="VerticalPivot"]
+[node name="SpringArm" type="SpringArm3D" parent="PitchPivot"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_2vm36")
 
-[node name="Camera3D" type="Camera3D" parent="VerticalPivot/SpringArm3D"]
+[node name="Camera" type="Camera3D" parent="PitchPivot/SpringArm"]
+unique_name_in_owner = true
 current = true
